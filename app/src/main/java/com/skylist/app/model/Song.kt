@@ -8,7 +8,7 @@ data class Song(
     val artist: String,
     val albumArt: Uri?,
     val contentUri: Uri,
-    val lyrics: List<LyricLine> = emptyList()
+    val durationMs: Long
 )
 
 data class LyricLine(
