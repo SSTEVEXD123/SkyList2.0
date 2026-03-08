@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SkyList</string>
+    <string name="permission_required">Concede permiso para leer audio local.</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="no_lyrics">No hay letra disponible</string>
+</resources>
