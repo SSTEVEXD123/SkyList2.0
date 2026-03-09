@@ -1,18 +1,61 @@
 # SkyList
 
-Proyecto Android (Kotlin) enfocado en reproducción local de música + letras sincronizadas.
+SkyList is a Kotlin Android music player application inspired by MetroList-style modular architecture and built for Android Studio.
 
-## Alcance incluido
-- Reproductor local con ExoPlayer (play/pause, siguiente, anterior, seek).
-- Lista de canciones en RecyclerView (título, artista, portada).
-- Mini player inferior.
-- Línea activa de letra sincronizada si el archivo de audio trae letra en formato LRC embebida en metadata.
+**Developer / Owner:** SSteveXD
 
-## Configuración
-- package: `com.skylist.app`
-- Min SDK 23
-- Target / Compile SDK 34
-- Arquitectura MVVM + Jetpack (ViewModel/LiveData)
+"SkyList is developed by SSteveXD and inspired by open-source music player projects."
 
-## Nota sobre InnerTune
-El entorno de ejecución no permitió clonar GitHub (error de red 403), por lo que se implementó una base equivalente simplificada siguiendo la estructura y la lógica de reproducción estable con Media3/ExoPlayer.
+## App description
+SkyList focuses on local playback with modern Media3 service architecture and integrates concept modules inspired by:
+- InnerTune (player architecture baseline)
+- OuterTune (playback control refinements)
+- Kizzy (Discord Rich Presence integration approach)
+- Better Lyrics (synchronized lyrics rendering)
+- SimpMusic Lyrics API (lyrics provider strategy)
+- metroserver (listen together sessions)
+- MusicRecognizer (music recognition workflow)
+
+## Included features
+- Local music playback (MediaStore + Media3 ExoPlayer)
+- Playlists (repository and favorites action)
+- Album artwork loading
+- Synchronized lyrics (embedded LRC parser + manager)
+- Discord Rich Presence manager abstraction
+- Background playback via `MusicService`
+- Notification & lockscreen controls through MediaSessionService
+- Music recognition manager (snippet matching baseline)
+- Listen together session hosting + state sync abstraction
+
+## Package structure
+```
+app/
+├─ data/
+│  ├─ repository/
+│  └─ models/
+├─ player/
+├─ lyrics/
+├─ recognition/
+├─ discord/
+├─ ui/
+│  ├─ main/
+│  ├─ player/
+│  ├─ playlists/
+│  └─ settings/
+└─ utils/
+```
+
+## Metadata
+- Application name: SkyList
+- Application ID: `com.skylist.app`
+- Developer credit tag: `SSteveXD`
+
+## Credits
+- MetroList reference integration approach
+- InnerTune — Zion Huang, Malopieds
+- OuterTune — Davide Garberi, Michael Zh
+- Kizzy — Discord Rich Presence implementation
+- Better Lyrics — synchronized lyrics
+- SimpMusic Lyrics API — lyrics data
+- metroserver — listen together implementation
+- MusicRecognizer — music recognition

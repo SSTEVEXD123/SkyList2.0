@@ -1,12 +1,12 @@
-package com.skylist.app.data
+package com.skylist.app.data.repository
 
 import android.content.ContentUris
 import android.content.Context
 import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.provider.MediaStore
-import com.skylist.app.lyrics.LrcParser
-import com.skylist.app.model.Song
+import com.skylist.app.data.models.Song
+import com.skylist.app.lyrics.LyricsParser
 
 class MusicRepository(private val context: Context) {
 
@@ -44,7 +44,7 @@ class MusicRepository(private val context: Context) {
                         artist = cursor.getString(artistIndex) ?: "Unknown",
                         albumArt = albumArtUri,
                         contentUri = songUri,
-                        lyrics = readLyrics(songUri)
+                        lyrics = readEmbeddedLyrics(songUri)
                     )
                 )
             }
@@ -52,11 +52,11 @@ class MusicRepository(private val context: Context) {
         return songs
     }
 
-    private fun readLyrics(songUri: Uri) = runCatching {
+    private fun readEmbeddedLyrics(songUri: Uri) = runCatching {
         val retriever = MediaMetadataRetriever()
         retriever.setDataSource(context, songUri)
         val rawLyrics = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LYRIC).orEmpty()
         retriever.release()
-        LrcParser.parse(rawLyrics)
+        LyricsParser.parse(rawLyrics)
     }.getOrDefault(emptyList())
 }

@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">SkyList</string>
-    <string name="permission_required">Concede permiso para leer audio local.</string>
+    <string name="permission_required">Grant permission to read local audio files.</string>
     <string name="play">Play</string>
     <string name="pause">Pause</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="no_lyrics">No hay letra disponible</string>
+    <string name="no_lyrics">No synchronized lyrics available</string>
+    <string name="listen_together_code">Listen together code: %1$s</string>
+    <string name="listen_together_idle">Listen together is idle</string>
+    <string name="app_description">SkyList music player by SSteveXD</string>
 </resources>

@@ -1,12 +1,12 @@
-package com.skylist.app.ui
+package com.skylist.app.ui.player
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.skylist.app.R
+import com.skylist.app.data.models.Song
 import com.skylist.app.databinding.ItemSongBinding
-import com.skylist.app.model.Song
 
 class SongAdapter(private val onSongClick: (Int) -> Unit) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
     private var songs: List<Song> = emptyList()

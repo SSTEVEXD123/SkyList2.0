@@ -1,8 +1,8 @@
 package com.skylist.app.lyrics
 
-import com.skylist.app.model.LyricLine
+import com.skylist.app.data.models.LyricLine
 
-object LrcParser {
+object LyricsParser {
     private val regex = Regex("\\[(\\d{2}):(\\d{2})(?:\\.(\\d{1,3}))?]([^\\n]*)")
 
     fun parse(raw: String): List<LyricLine> {
