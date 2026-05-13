@@ -28,7 +28,7 @@ class SongAdapter(private val onSongClick: (Int) -> Unit) : RecyclerView.Adapter
     inner class SongViewHolder(private val binding: ItemSongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(song: Song, position: Int) {
             binding.songTitle.text = song.title
-            binding.songArtist.text = song.artist
+            binding.songArtist.text = "${song.artist} • ${song.album}"
             binding.songCover.load(song.albumArt) {
                 placeholder(R.drawable.ic_music_note)
                 error(R.drawable.ic_music_note)

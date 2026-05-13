@@ -7,6 +7,10 @@ import android.net.Uri
 import android.provider.MediaStore
 import com.skylist.app.lyrics.LrcParser
 import com.skylist.app.model.Song
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MusicRepository(private val context: Context) {
 
@@ -16,6 +20,7 @@ class MusicRepository(private val context: Context) {
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.ARTIST,
+            MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.ALBUM_ID
         )
         val selection = "${MediaStore.Audio.Media.IS_MUSIC} != 0"
@@ -30,6 +35,7 @@ class MusicRepository(private val context: Context) {
             val idIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)
             val titleIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)
             val artistIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)
+            val albumIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)
             val albumIdIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)
 
             while (cursor.moveToNext()) {
@@ -40,8 +46,9 @@ class MusicRepository(private val context: Context) {
                 songs.add(
                     Song(
                         id = id,
-                        title = cursor.getString(titleIndex),
-                        artist = cursor.getString(artistIndex) ?: "Unknown",
+                        title = cursor.getString(titleIndex).orEmpty().ifBlank { "Unknown title" },
+                        artist = cursor.getString(artistIndex).orEmpty().ifBlank { "Unknown artist" },
+                        album = cursor.getString(albumIndex).orEmpty().ifBlank { "Unknown album" },
                         albumArt = albumArtUri,
                         contentUri = songUri,
                         lyrics = readLyrics(songUri)
@@ -51,6 +58,29 @@ class MusicRepository(private val context: Context) {
         }
         return songs
     }
+
+    fun exportLibrary(songs: List<Song>): File {
+        val backupDir = File(context.filesDir, "library_backups").apply { mkdirs() }
+        val timestamp = SimpleDateFormat("yyyyMMdd-HHmmss", Locale.US).format(Date())
+        val file = File(backupDir, "skylist-library-$timestamp.csv")
+        file.printWriter().use { writer ->
+            writer.println("id,title,artist,album,uri")
+            songs.forEach { song ->
+                writer.println(
+                    listOf(
+                        song.id.toString(),
+                        song.title,
+                        song.artist,
+                        song.album,
+                        song.contentUri.toString()
+                    ).joinToString(",") { it.toCsvCell() }
+                )
+            }
+        }
+        return file
+    }
+
+    private fun String.toCsvCell(): String = "\"${replace("\"", "\"\"")}\""
 
     private fun readLyrics(songUri: Uri) = runCatching {
         val retriever = MediaMetadataRetriever()
