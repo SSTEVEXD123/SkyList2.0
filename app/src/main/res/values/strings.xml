@@ -6,4 +6,22 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="no_lyrics">No hay letra disponible</string>
+    <string name="search_hint">Buscar canción, artista o álbum</string>
+    <string name="shuffle_on">Aleatorio activado</string>
+    <string name="shuffle_off">Aleatorio</string>
+    <string name="sleep_timer">Temporizador</string>
+    <string name="copy_lyrics">Copiar letra</string>
+    <string name="export_library">Exportar</string>
+    <string name="library_empty">No se encontraron canciones locales.</string>
+    <string name="library_count">%1$d canciones en tu biblioteca</string>
+    <string name="library_filtered_count">%1$d de %2$d canciones</string>
+    <string name="lyrics_copied">Letra copiada</string>
+    <string name="lyrics_empty">No hay letra para copiar.</string>
+    <string name="backup_created">Biblioteca exportada: %1$s</string>
+    <string name="backup_failed">No se pudo exportar la biblioteca.</string>
+    <string name="sleep_timer_title">Pausar música después de</string>
+    <string name="sleep_timer_cancel">Cancelar temporizador</string>
+    <string name="sleep_timer_off">Temporizador desactivado</string>
+    <string name="sleep_timer_active">Se pausará en %1$d min</string>
+    <string name="sleep_timer_done">Temporizador finalizado</string>
 </resources>

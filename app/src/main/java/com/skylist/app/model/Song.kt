@@ -6,6 +6,7 @@ data class Song(
     val id: Long,
     val title: String,
     val artist: String,
+    val album: String,
     val albumArt: Uri?,
     val contentUri: Uri,
     val lyrics: List<LyricLine> = emptyList()
